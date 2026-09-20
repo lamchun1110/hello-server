@@ -4,11 +4,11 @@ const js = require('@eslint/js');
 
 module.exports = [
   {
-    files: ['src/**/*.js', 'test/**/*.js'],
+    files: ['*.js', 'src/**/*.js', 'test/**/*.js'],
 languageOptions: {
     ecmaVersion: 2022,
     sourceType: 'commonjs',
-    globals: { fetch: 'readonly' },
+    globals: { fetch: 'readonly', process: 'readonly', console: 'readonly' },
   },
     plugins: {
       js: js,

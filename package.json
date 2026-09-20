@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node server.js",
     "test": "node --test",
-    "lint": "eslint src test"
+    "lint": "eslint ."
   },
   "dependencies": {
     "express": "^4.19.2"

@@ -99,5 +99,34 @@ test('GET /api/echo?q= returns empty string for empty q', async () => {
   const res = await fetch(`${baseUrl}/api/echo?q=`);
   assert.strictEqual(res.status, 200);
   const body = await res.json();
-  assert.strictEqual(body.q, '');
-});
+    assert.strictEqual(body.q, '');
+  });
+
+  test('POST /api/echo echoes a JSON string body', async () => {
+    const res = await fetch(`${baseUrl}/api/echo`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify('hello'),
+    });
+    const body = await res.json();
+    assert.strictEqual(res.status, 200);
+    assert.strictEqual(body.q, 'hello');
+  });
+
+  test('POST /api/echo rejects a missing body', async () => {
+    const res = await fetch(`${baseUrl}/api/echo`, { method: 'POST' });
+    const body = await res.json();
+    assert.strictEqual(res.status, 400);
+    assert.strictEqual(body.error, 'body is required');
+  });
+
+  test('POST /api/echo rejects a non-string body', async () => {
+    const res = await fetch(`${baseUrl}/api/echo`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ msg: 'hi' }),
+    });
+    const body = await res.json();
+    assert.strictEqual(res.status, 400);
+    assert.strictEqual(body.error, 'body must be a string');
+  });

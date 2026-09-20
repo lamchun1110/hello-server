@@ -9,7 +9,7 @@ before(async () => {
   const app = require('../src/app');
   server = http.createServer(app);
   await new Promise((resolve, reject) => {
-    server.listen(0, '127.0.0.1', (err, addr) => {
+    server.listen(0, '127.0.0.1', (err) => {
       if (err) { reject(err); return; }
       baseUrl = 'http://127.0.0.1:' + server.address().port;
       resolve();

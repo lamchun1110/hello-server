@@ -82,3 +82,9 @@ test('DELETE /api/unknown returns 404', async () => {
   const res = await fetch(baseUrl + '/api/unknown', { method: 'DELETE' });
   assert.strictEqual(res.status, 404);
 });
+
+test('GET /api/echo?q=hello returns the query value', async () => {
+  const res = await fetch(baseUrl + '/api/echo?q=hello');
+  assert.strictEqual(res.status, 200);
+  assert.deepStrictEqual(await res.json(), { q: 'hello' });
+});

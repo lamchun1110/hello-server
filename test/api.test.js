@@ -84,7 +84,20 @@ test('DELETE /api/unknown returns 404', async () => {
 });
 
 test('GET /api/echo?q=hello returns the query value', async () => {
-  const res = await fetch(baseUrl + '/api/echo?q=hello');
+  const res = await fetch(`${baseUrl}/api/echo?q=hello`);
   assert.strictEqual(res.status, 200);
-  assert.deepStrictEqual(await res.json(), { q: 'hello' });
+  const body = await res.json();
+  assert.strictEqual(body.q, 'hello');
+});
+test('GET /api/echo with no q param returns q undefined', async () => {
+  const res = await fetch(`${baseUrl}/api/echo`);
+  assert.strictEqual(res.status, 200);
+  const body = await res.json();
+  assert.strictEqual(body.q, undefined);
+});
+test('GET /api/echo?q= returns empty string for empty q', async () => {
+  const res = await fetch(`${baseUrl}/api/echo?q=`);
+  assert.strictEqual(res.status, 200);
+  const body = await res.json();
+  assert.strictEqual(body.q, '');
 });

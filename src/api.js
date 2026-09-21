@@ -15,11 +15,10 @@ api.get("/echo", (req, res) => {
 });
 
 api.post("/echo", (req, res) => {
-  if (
-    req.body === undefined ||
-    req.body === null ||
-    (typeof req.body === "object" && Object.keys(req.body).length === 0)
-  ) {
+if (
+  req.body == null ||
+  (typeof req.body === "object" && Object.keys(req.body).length === 0)
+) {
     return res.status(400).json({ error: "body is required" });
   }
   if (typeof req.body !== "string") {

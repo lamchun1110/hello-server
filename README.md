@@ -1,6 +1,6 @@
 # Bonsai Test
 
-A minimal Express API server with the `/api/hello` and `/api/held` routes, tested with Node's built-in `node:test` runner.
+A minimal Express API server with the `/api/hello` and `/api/health` routes, tested with Node's built-in `node:test` runner.
 
 ## Requirements
 
@@ -37,7 +37,7 @@ Uses `node:test` and global `fetch` against an ephemeral port — no test depend
 | Method | Path        | Response                                   |
 | ------ | ----------- | ------------------------------------------ |
 | GET    | `/api/hello`| `{"message":"Hello from /api/hello!"}`     |
-| GET    | `/api/held` | `{"status":"ok"}`                          |
+| GET    | `/api/health` | `{"status":"ok"}`                          |
 
 Unknown routes return `404`.
 

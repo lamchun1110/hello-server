@@ -28,4 +28,18 @@ api.post("/echo", (req, res) => {
   res.json({ q: req.body });
 });
 
+api.get("/slow", (req, res) => {
+  const started = Date.now();
+  let finished = false;
+  const timer = setTimeout(() => {
+    if (finished) return;
+    finished = true;
+    res.json({ elapsedMs: Date.now() - started });
+  }, 2000);
+  req.once("close", () => {
+    finished = true;
+    clearTimeout(timer);
+  });
+});
+
 module.exports = api;

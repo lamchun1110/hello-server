@@ -8,7 +8,7 @@ module.exports = [
 languageOptions: {
     ecmaVersion: 2022,
     sourceType: 'commonjs',
-    globals: { fetch: 'readonly', process: 'readonly', console: 'readonly' },
+    globals: { fetch: 'readonly', process: 'readonly', console: 'readonly', setTimeout: 'readonly', clearTimeout: 'readonly', AbortSignal: 'readonly' },
   },
     plugins: {
       js: js,
